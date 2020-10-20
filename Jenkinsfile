@@ -21,5 +21,14 @@ pipeline {
                 shell 'java -jar junit-platform-console-standalone-1.4.0.jar --class-path target --scan-class-path --reports-dir=target/surefire-reports/'
             }
         }
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven-3.5.2') {
+                    sh 'mvn deploy'
+                }
+            }
+        }
     }
 }
+    
+
